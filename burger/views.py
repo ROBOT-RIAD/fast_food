@@ -15,5 +15,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         id = self.request.query_params.get("id",None)
         if id is not None:
             queryset = queryset.filter(user__id=id)
+        # user = self.request.user
+        # queryset = queryset.filter(user__id=user.id)
         return queryset
 

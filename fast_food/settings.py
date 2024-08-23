@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-CORS_ALLOWED_ORIGINS =[]
+CORS_ALLOWED_ORIGINS =["http://localhost:3000"]
 
 REST_FRAMEWORK ={
     'DEFAULT_FILTER_BACKENDS':['django_filters.rest_framework.DjangoFilterBackend'],
