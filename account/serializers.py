@@ -12,4 +12,18 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data["password"]
         user = User.objects.Create_user(email,password)
         return user
+    
+
+
+class AddMoneySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields =['balance']
+
+class AddMoneyViewSerializer(serializers.ModelSerializer):
+    balance = serializers.ReadOnlyField()
+
+    class Meta:
+        model = User
+        fields = ['balance']
         

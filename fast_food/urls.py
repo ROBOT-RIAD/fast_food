@@ -23,5 +23,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/',include('account.urls')),
     path('burger/',include('burger.urls')),
+    path('super-admin/',include('adminc.urls')),
+    path('item/',include('item.urls')),
+    path('Gallery/',include('Gallery.urls')),
+    path('email/',include('Email.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.index_title = "FAST FOOD"
+admin.site.site_header = "FAST FOOT Admin"
+admin.site.site_title ="FAST FOOT"

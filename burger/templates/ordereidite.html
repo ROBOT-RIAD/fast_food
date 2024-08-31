@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mx-auto mt-10">
+    <!-- Display form-level errors -->
+    {% if form.non_field_errors %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
+            <p class="font-bold">Error!</p>
+            {% for error in form.non_field_errors %}
+                <p class="block sm:inline">{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h2 style="color:#ee4e3b" class="text-2xl font-bold text-center mb-6">Update Order</h2>
+        
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Render form fields -->
+            {% for field in form.visible_fields %}
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                    
+                    <!-- Field-level error messages -->
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <p class="text-red-600 text-sm italic">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
+            <div class="flex justify-center">
+                <button type="submit" style="background-color:#ee4e3b;" class="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Update Order
+                </button>                
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

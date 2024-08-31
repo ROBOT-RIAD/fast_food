@@ -21,10 +21,12 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser,PermissionsMixin):
+    fullname = models.CharField(max_length=120,default="")
     email = models.EmailField(max_length=150,unique=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
+    balance =models.DecimalField(default=0,max_digits =12,decimal_places =2)
     objects = UserManager()
     USERNAME_FIELD = "email"
 

@@ -1,0 +1,80 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block head_title %}Fast Food{% endblock %} {% block body %}
+<div class="my-10 py-3 px-4 bg-white rounded-xl shadow-md">
+    <h1 style="color:#ee4e3b" class="font-bold text-3xl text-center pb-5 pt-2">All Report</h1>
+    <h1 style="color:#ee4e3b" class="font-bold  text-center pb-5 "> <strong style="border: solid black; border-radius:10px">total order: {{ order_list.count }} </strong> <strong class="mx-2" style="border: solid black; border-radius:10px"> total price:{{total_price}} </strong></h1>
+    <hr/>
+    <form method="get" action="{% url 'home' %}">
+      <div class="flex justify-center">
+        <div
+          class="mt-10 pl-3 pr-2 bg-white border rounded-md border-gray-500 flex justify-between items-center relative w-4/12 mx-2"
+        >
+          <label for="start_date">From:</label>
+          <input
+            class="appearance-none w-full outline-none focus:outline-none active:outline-none"
+            type="date"
+            id="start_date"
+            name="start_date"
+          />
+        </div>
+   
+        <div
+          class="mt-10 pl-3 pr-2 bg-white border rounded-md border-gray-500 flex justify-between items-center relative w-4/12"
+        >
+          <label for="end_date">To:</label>
+          <input
+            class="appearance-none w-full outline-none focus:outline-none active:outline-none"
+            type="date"
+            id="end_date"
+            name="end_date"
+          />
+        </div>
+        <div class="mt-10 pl-3 pr-2 flex justify-between items-center relative w-4/12">
+          <button
+            style="background-color:#ee4e3b;"
+            class=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Filter
+          </button>
+        </div>
+      </div>
+    </form>
+    <table
+      class="table-auto mx-auto w-full px-5 rounded-xl mt-8 border dark:border-neutral-500"
+    >
+      <thead style="background-color:#ee4e3b;" class=" text-white text-left">
+        <tr
+          style="background-color:#ee4e3b;"
+          class="bg-gradient-to-tr  rounded-md py-2 px-4 text-white font-bold"
+        >
+          <th class="px-4 py-2">Date</th>
+          <th class="px-4 py-2">ingredients</th>
+          <th class="px-4 py-2">customer address</th>
+          <th class="px-4 py-2">price</th>
+          <th class="px-4 py-2">payment type</th>
+          <th class="px-4 py-2">payment</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in order_list %}
+        <tr>
+          <td class="px-4 py-2">{{ order.orderTime }}</td>
+          <td class="px-4 py-2">{{ order.ingredients }}</td>
+          <td class="px-4 py-2">{{ order.customer.deliveryAddress }}</td>
+          <td class="px-4 py-2">{{ order.price }}</td>
+          <td class="px-4 py-2">{{ order.customer.paymenttype }}</td>
+          <td class="px-4 py-2">{{ order.payment }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="px-4 py-2 text-center">No orders found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}

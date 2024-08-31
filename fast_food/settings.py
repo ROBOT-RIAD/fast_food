@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c&&coz8kohghzu*nd=1oq0xs+7wwuxz77x%5_ldb6&4_z-5doq'
+SECRET_KEY = env("sky")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['','https://*.127.0.0.1']
 
 
 # Application definition
@@ -42,6 +47,11 @@ INSTALLED_APPS = [
     'burger',
     'account',
     "corsheaders",
+    'adminc',
+    'core',
+    'Email',
+    'item',
+    'Gallery',
 ]
 
 MIDDLEWARE = [
@@ -101,6 +111,13 @@ REST_FRAMEWORK = {
     )
 }
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),  # Set access token expiry time
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),    # Set refresh token expiry time
+    'ROTATE_REFRESH_TOKENS': True,                 # Optional: Rotates refresh tokens
+    'BLACKLIST_AFTER_ROTATION': True,              # Optional: Blacklists old refresh tokens
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -143,3 +160,11 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER =env("EMAIL")
+EMAIL_HOST_PASSWORD =env("EMAIL_PASSWORD")

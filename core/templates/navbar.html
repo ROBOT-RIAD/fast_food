@@ -1,0 +1,57 @@
+<div style="height: 100vh;" class="bg-white">
+    <div>
+        <h1 style="font-size: 30px; color: #ee4e3b; text-align: center;">SUPERUSER ADMIN</h1>
+    </div>
+    <hr class="container" />
+    <div>
+        {% if request.user.is_authenticated %}
+            <div class="mt-2">
+                <a href="{% url 'home' %}" 
+                   style="display: block; text-align: center; background-color: white; margin-top: -15px; text-decoration: none;" 
+                   onmouseover="this.style.backgroundColor='red';" 
+                   onmouseout="this.style.backgroundColor='white';">
+                   <h2 class="text-black" style="margin: 0;">All Order Summary</h2>
+                </a>
+                <a href="{% url 'unpaidorder' %}" 
+                   style="display: block; text-align: center; background-color: white; margin-top: 0px; margin-bottom: 100px; text-decoration: none;" 
+                   onmouseover="this.style.backgroundColor='red';" 
+                   onmouseout="this.style.backgroundColor='white';">
+                   <h2 class="text-black" style="margin: 0;">Unpaid Order Summary</h2>
+                </a>
+                <a href="{% url 'item-create' %}" 
+                   style="display: block; text-align: center; background-color: white; margin-top: -100px; margin-bottom: 100px; text-decoration: none;" 
+                   onmouseover="this.style.backgroundColor='red';" 
+                   onmouseout="this.style.backgroundColor='white';">
+                   <h2 class="text-black" style="margin: 0;">Add New Item</h2>
+                </a>
+                <a href="{% url 'gallery-create' %}" 
+                   style="display: block; text-align: center; background-color: white; margin-top: -100px; margin-bottom: 100px; text-decoration: none;" 
+                   onmouseover="this.style.backgroundColor='red';" 
+                   onmouseout="this.style.backgroundColor='white';">
+                   <h2 class="text-black" style="margin: 0;">Add Gallery</h2>
+                </a>
+                <a href="{% url 'email' %}" 
+                   style="display: block; text-align: center; background-color: white; margin-top: -100px; margin-bottom: 100px; text-decoration: none;" 
+                   onmouseover="this.style.backgroundColor='red';" 
+                   onmouseout="this.style.backgroundColor='white';">
+                   <h2 class="text-black" style="margin: 0;">Check Email</h2>
+                </a>
+                <a href="{% url 'logout' %}" 
+                   style="display: block; text-align: center; background-color: white; margin-top: -100px; margin-bottom: 100px; text-decoration: none;" 
+                   onmouseover="this.style.backgroundColor='red';" 
+                   onmouseout="this.style.backgroundColor='white';">
+                   <h2 class="text-black" style="margin: 0;">Logout</h2>
+                </a>
+            </div>
+        {% else %}
+            <div>
+                <a href="{% url 'login' %}" 
+                   style="display: block; text-align: center; background-color: #ee4e3b; margin-top: -15px; margin-bottom: 100px; text-decoration: none;" 
+                   onmouseover="this.style.backgroundColor='red';" 
+                   onmouseout="this.style.backgroundColor='#ee4e3b';">
+                   <h2 class="text-white" style="margin: 0;">Login</h2>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
