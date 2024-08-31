@@ -95,7 +95,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-CORS_ALLOWED_ORIGINS =["http://localhost:3000"]
+# CORS_ALLOWED_ORIGINS =["http://localhost:3000"]
+CORS_ALLOWED_ORIGINS =["https://phenomenal-donut-4773f6.netlify.app"]
 
 REST_FRAMEWORK ={
     'DEFAULT_FILTER_BACKENDS':['django_filters.rest_framework.DjangoFilterBackend'],
