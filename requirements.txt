@@ -204,3 +204,4 @@ XlsxWriter
 xlwt
 yarg
 zipp
+djangorestframework-simplejwt
