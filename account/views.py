@@ -35,7 +35,7 @@ class ActivateUserView(APIView):
             if default_token_generator.check_token(user, token):
                 user.is_active = True
                 user.save()
-                return redirect('http://localhost:3000/login')
+                return redirect('https://66d4536535bb4f232c5236e8--phenomenal-donut-4773f6.netlify.app/login')
         except (TypeError, ValueError, OverflowError, User.DoesNotExist):
             user = None
         return Response({'message': 'Activation link is invalid!'}, status=400)
